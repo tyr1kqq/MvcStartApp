@@ -28,7 +28,7 @@ namespace MvcStartApp
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
-            services.AddSingleton<IBlogRepository , BlogRepository>();
+            services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddControllersWithViews();
         }
 
