@@ -5,20 +5,21 @@ using MvcStartApp.Models.Db;
 
 public class RequestRepository : IRequestRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly BlogContext _context;
 
-    public RequestRepository(ApplicationDbContext context)
+    public RequestRepository(BlogContext context)
     {
         _context = context;
     }
 
     public async Task AddRequestAsync(Request request)
     {
-        await _context.Requests.AddAsync(request);
-        await _context.SaveChangesAsync(); // Обязательно сохраняем изменения
+        await _context.AddAsync(request);
+        await _context.SaveChangesAsync(); 
     }
+
     public async Task<List<Request>> GetAllRequestsAsync()
     {
-        return await _context.Requests.ToListAsync();
+        return await _context.Requests.ToListAsync(); 
     }
 }

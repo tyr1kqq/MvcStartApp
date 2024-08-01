@@ -32,7 +32,7 @@ namespace MvcStartApp
 
             // Регистрация репозиториев
             services.AddTransient<IBlogRepository, BlogRepository>();
-            services.AddScoped<IRequestRepository, RequestRepository>();
+            services.AddTransient<IRequestRepository, RequestRepository>();
 
             services.AddControllersWithViews();
         }

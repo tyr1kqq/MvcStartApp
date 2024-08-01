@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MvcStartApp.Models.Db;
 
 public sealed class BlogContext : DbContext
 {
@@ -13,4 +14,6 @@ public sealed class BlogContext : DbContext
     {
         Database.EnsureCreated();
     }
+
+    public DbSet<Request> Requests { get; set; }
 }

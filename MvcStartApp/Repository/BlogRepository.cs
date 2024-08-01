@@ -9,6 +9,8 @@ namespace MvcStartApp.Repository
         // ссылка на контекст 
         private readonly BlogContext _context;
 
+
+
         // метод - конструктор для инициализации 
         public BlogRepository(BlogContext context)
         {
