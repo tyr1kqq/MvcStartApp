@@ -13,7 +13,7 @@ namespace MvcStartApp.Controllers
             _repo = repo;
         }
 
-        public async Task <IActionResult> Index()
+        public async Task<IActionResult> Home()
         {
             var Authors = await _repo.GetUsers();
             return View(Authors);
