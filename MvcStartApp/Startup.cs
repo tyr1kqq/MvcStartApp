@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcStartApp.Models.Db;
 using MvcStartApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,16 @@ namespace MvcStartApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
+
+            // Регистрация репозиториев
             services.AddTransient<IBlogRepository, BlogRepository>();
+            services.AddScoped<IRequestRepository, RequestRepository>();
+
             services.AddControllersWithViews();
         }
 
@@ -52,6 +57,13 @@ namespace MvcStartApp
 
             app.UseAuthorization();
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "logs",
+                    pattern: "logs",
+                    defaults: new { controller = "Logs", action = "Index" });
+            });
 
             app.UseEndpoints(endpoints =>
             {
