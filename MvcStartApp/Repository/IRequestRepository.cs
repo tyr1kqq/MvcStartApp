@@ -7,4 +7,5 @@ public interface IRequestRepository
 {
     Task AddRequestAsync(Request request);
 
+    Task<List<Request>> GetAllRequestsAsync();
 }

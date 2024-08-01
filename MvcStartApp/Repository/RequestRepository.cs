@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MvcStartApp.Models.Db;
@@ -20,6 +21,15 @@ public class RequestRepository : IRequestRepository
 
     public async Task<List<Request>> GetAllRequestsAsync()
     {
-        return await _context.Requests.ToListAsync(); 
+        try
+        {
+            return await _context.Requests.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            
+            Console.WriteLine($"Error in GetAllRequestsAsync: {ex.Message}");
+            throw; 
+        }
     }
 }

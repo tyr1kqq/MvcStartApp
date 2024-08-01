@@ -6,9 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 public class LogsController : Controller
 {
-    private readonly RequestRepository _requestRepository;
+    private readonly IRequestRepository _requestRepository;
+    
 
-    public LogsController(RequestRepository requestRepository)
+    public LogsController(IRequestRepository requestRepository)
     {
         _requestRepository = requestRepository;
     }

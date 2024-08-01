@@ -7,18 +7,17 @@ using Microsoft.Extensions.DependencyInjection;
 public class LoggingMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly IRequestRepository _requestRepository;
+    
 
-    public LoggingMiddleware(RequestDelegate next, IRequestRepository requestRepository)
+    public LoggingMiddleware(RequestDelegate next)
     {
         _next = next;
-        _requestRepository = requestRepository;
     }
 
     /// <summary>
     ///  Необходимо реализовать метод Invoke  или InvokeAsync
     /// </summary>
-    public async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context, IRequestRepository _requestRepository)
     {
         // Для логирования данных о запросе используем свойста объекта HttpContext
         Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
