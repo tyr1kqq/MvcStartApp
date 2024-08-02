@@ -14,6 +14,8 @@ public class LogsController : Controller
         _requestRepository = requestRepository;
     }
 
+
+    [Route("Request")]
     public async Task<IActionResult> Index()
     {
         var requests = await _requestRepository.GetAllRequestsAsync();
