@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MvcStartApp.Models.Db.Request>
+
+<h1>История запросов</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Дата</th>
+            <th>URL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.Date</td>
+                <td>@request.Url</td>
+            </tr>
+        }
+    </tbody>
+</table>
